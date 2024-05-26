@@ -1,10 +1,12 @@
-import { Box, Container, Flex, Heading, Link, Text, VStack, HStack, Divider, IconButton, Button } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Link, Text, VStack, HStack, Divider, IconButton, Button, useColorModeValue } from "@chakra-ui/react";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 const Index = () => {
   const [posts, setPosts] = useState([]);
+  const bg = useColorModeValue("gray.100", "gray.900");
+  const color = useColorModeValue("black", "white");
 
   useEffect(() => {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
@@ -12,9 +14,9 @@ const Index = () => {
   }, []);
 
   return (
-    <Container maxW="container.xl">
+    <Container maxW="container.xl" bg={bg} color={color}>
       {/* Navigation Bar */}
-      <Flex as="nav" bg="gray.800" color="white" p={4} justifyContent="space-between" alignItems="center">
+      <Flex as="nav" bg={useColorModeValue("gray.800", "gray.700")} color="white" p={4} justifyContent="space-between" alignItems="center">
         <Heading as="h1" size="lg">My Blog</Heading>
         <HStack spacing={4}>
           <Link as={RouterLink} to="/" color="white">Home</Link>
@@ -55,7 +57,7 @@ const Index = () => {
       </Flex>
 
       {/* Footer */}
-      <Box as="footer" bg="gray.800" color="white" py={4} mt={8}>
+      <Box as="footer" bg={useColorModeValue("gray.800", "gray.700")} color="white" py={4} mt={8}>
         <Flex justifyContent="center" mb={4}>
           <IconButton as="a" href="#" aria-label="Twitter" icon={<FaTwitter />} mx={2} />
           <IconButton as="a" href="#" aria-label="Facebook" icon={<FaFacebook />} mx={2} />
